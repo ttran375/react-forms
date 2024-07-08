@@ -1,29 +1,46 @@
-import React, { useReducer } from 'react';
+//import { useForm } from "react-hook-form";
+import { useForm } from 'react-hook-form';
 
-// Define a reducer function
-const reducer = (state, action) => {
-  switch (action.type) {
-    case 'INCREMENT':
-      return { count: state.count + 1 };
-    case 'DECREMENT':
-      return { count: state.count - 1 };
-    default:
-      return state;
-  }
-};
+import "./example.css";
 
-function Counter() {
-  // Initialize state using useReducer
-  const [state, dispatch] = useReducer(reducer, { count: 0 });
+function LoginForm() {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
+  const onSubmit = (data) => {
+    console.log(data);
+  };
 
   return (
-    <div>
-      <p>Count: {state.count}</p>
-      <button onClick={() => dispatch({ type: 'INCREMENT' })}>Increment</button>
-      <button onClick={() => dispatch({ type: 'DECREMENT' })}>Decrement</button>
-    </div>
+    <form onSubmit={handleSubmit(onSubmit)} className="hook">
+      <label className="hook__text">Email</label>
+      <input
+        type="email"
+        className="hook__input"
+        {...register("email", { required: true, pattern: /^\S+@\S+$/i })}
+      />
+      {errors.email && (
+        <p className="hook__error">Email is required and must be valid</p>
+      )}
+
+      <label className="hook__text">Password</label>
+      <input
+        type="password"
+        className="hook__input"
+        {...register("password", { required: true })}
+      />
+      {errors.password && <p className="hook__error">Password is required</p>}
+
+      <button className="hook__button" type="submit">
+        Submit
+      </button>
+    </form>
   );
 }
 
-export default Counter;
+export default LoginForm;
+
 
