@@ -1,6 +1,6 @@
 # React Forms
 
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/ttran375/interactive-ui)
+[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/ttran375/react-forms)
 
 The repository contains:
 
